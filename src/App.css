@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Custom Properties for Dynamic Theming */
+:root {
+  /* Default to Cyber Amber theme */
+  --bg-primary: #0f0f10;
+  --bg-surface: #1a1b1e;
+  --color-primary: #F0A500;
+  --color-secondary: #FFD369;
+  --color-accent: #00ADB5;
+  --color-text: #EEEEEE;
+  --color-text-muted: #A0A0A0;
+}
+
+/* Zen Paper theme variables */
+.theme-zen-paper {
+  --bg-primary: #F9FAFB;
+  --bg-surface: #FFFFFF;
+  --color-primary: #2563EB;
+  --color-secondary: #1E40AF;
+  --color-accent: #38BDF8;
+  --color-text: #111827;
+  --color-text-muted: #6B7280;
+}
+
+/* Base styles */
+:root {
+  --theme-transition-duration: 0ms; /* Initially no transition to prevent flash */
+}
+
+* {
+  transition: 
+    background-color var(--theme-transition-duration, 200ms) ease, 
+    color var(--theme-transition-duration, 200ms) ease, 
+    border-color var(--theme-transition-duration, 200ms) ease,
+    box-shadow var(--theme-transition-duration, 200ms) ease;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  color: var(--color-text);
+  font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Responsive text scaling */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline from textarea specifically */
+textarea:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Ensure scrollbars are visible when needed */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-muted) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 3px;
+  opacity: 0.4;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+  opacity: 0.7;
+}
+
+.scrollbar-thin::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Force scrollbar to always be visible when content overflows */
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  min-height: 20px;
+}
+
+/* Custom scrollbars that follow theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 4px;
+  opacity: 0.3;
+  transition: opacity var(--theme-transition-duration, 200ms) ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.6;
+  background: var(--color-primary);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bg-primary);
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-muted) var(--bg-primary);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

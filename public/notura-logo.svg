@@ -1,0 +1,16 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="var(--color-primary, #F0A500)" opacity="0.1"/>
+  
+  <!-- Main logo shape - stylized "N" with note/document elements -->
+  <path d="M16 20 L16 44 L20 44 L20 28 L36 44 L40 44 L40 28 L44 44 L48 44 L48 20 L44 20 L44 36 L28 20 L24 20 L24 36 L20 20 L16 20 Z" 
+        fill="var(--color-primary, #F0A500)"/>
+  
+  <!-- Document lines accent -->
+  <rect x="22" y="24" width="8" height="2" rx="1" fill="var(--color-accent, #00ADB5)" opacity="0.6"/>
+  <rect x="22" y="28" width="12" height="2" rx="1" fill="var(--color-accent, #00ADB5)" opacity="0.4"/>
+  <rect x="22" y="32" width="6" height="2" rx="1" fill="var(--color-accent, #00ADB5)" opacity="0.3"/>
+  
+  <!-- Subtle glow effect -->
+  <circle cx="32" cy="32" r="28" stroke="var(--color-secondary, #FFD369)" stroke-width="1" fill="none" opacity="0.2"/>
+</svg>

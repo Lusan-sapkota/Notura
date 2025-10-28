@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="#F0A500"/>
+  
+  <!-- Main "N" shape -->
+  <path d="M128 160 L128 352 L160 352 L160 224 L288 352 L320 352 L320 224 L352 352 L384 352 L384 160 L352 160 L352 288 L224 160 L192 160 L192 288 L160 160 L128 160 Z" 
+        fill="white"/>
+  
+  <!-- Document accent lines -->
+  <rect x="176" y="192" width="64" height="8" rx="4" fill="#00ADB5" opacity="0.8"/>
+  <rect x="176" y="224" width="96" height="8" rx="4" fill="#00ADB5" opacity="0.6"/>
+  <rect x="176" y="256" width="48" height="8" rx="4" fill="#00ADB5" opacity="0.4"/>
+</svg>
