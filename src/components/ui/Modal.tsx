@@ -50,7 +50,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
       {/* Modal */}
       <div 
         ref={modalRef}
-        className="relative bg-bg-surface border border-color-text-muted/20 rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-hidden"
+        className="relative bg-bg-surface border border-color-text-muted/20 rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden"
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-color-text-muted/20">

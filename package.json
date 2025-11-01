@@ -15,10 +15,13 @@
   "dependencies": {
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",
+    "@types/prismjs": "^1.26.5",
     "highlight.js": "^11.11.1",
+    "prismjs": "^1.30.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
+    "react-select": "^5.10.2",
     "rehype-highlight": "^7.0.2",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1"

@@ -622,7 +622,253 @@ fn get_database_size(app_handle: &AppHandle) -> Result<u64, Box<dyn std::error::
     }
 }
 
+// Image management commands
+#[tauri::command]
+async fn save_image(
+    file_data: Vec<u8>,
+    filename: String,
+    original_name: String,
+    mime_type: String,
+    note_id: Option<String>,
+    app_handle: AppHandle,
+    state: State<'_, AppState>,
+) -> Result<ImageMetadata, String> {
+    use std::fs;
+    use std::path::Path;
+    
+    let pool = state.db.pool();
+    let id = Uuid::new_v4().to_string();
+    let now = Utc::now();
+    
+    // Create images directory if it doesn't exist
+    let app_dir = app_handle.path().app_data_dir()
+        .map_err(|e| format!("Failed to get app data dir: {}", e))?;
+    let images_dir = app_dir.join("images");
+    fs::create_dir_all(&images_dir)
+        .map_err(|e| format!("Failed to create images directory: {}", e))?;
+    
+    // Generate unique filename
+    let extension = Path::new(&original_name)
+        .extension()
+        .and_then(|ext| ext.to_str())
+        .unwrap_or("png");
+    let unique_filename = format!("{}_{}.{}", id, chrono::Utc::now().timestamp(), extension);
+    let file_path = images_dir.join(&unique_filename);
+    
+    // Save file to disk
+    fs::write(&file_path, &file_data)
+        .map_err(|e| format!("Failed to save image file: {}", e))?;
+    
+    // Save metadata to database
+    let image_metadata = sqlx::query_as::<_, ImageMetadata>(
+        r#"
+        INSERT INTO images (id, filename, original_name, file_path, size, mime_type, created_at)
+        VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)
+        RETURNING *
+        "#,
+    )
+    .bind(&id)
+    .bind(&unique_filename)
+    .bind(&original_name)
+    .bind(file_path.to_string_lossy().to_string())
+    .bind(file_data.len() as i64)
+    .bind(&mime_type)
+    .bind(&now)
+    .fetch_one(pool)
+    .await
+    .map_err(|e| format!("Failed to save image metadata: {}", e))?;
+    
+    // If note_id is provided, create the association
+    if let Some(note_id) = note_id {
+        sqlx::query(
+            "INSERT INTO note_images (note_id, image_id, created_at) VALUES (?1, ?2, ?3)"
+        )
+        .bind(&note_id)
+        .bind(&id)
+        .bind(&now)
+        .execute(pool)
+        .await
+        .map_err(|e| format!("Failed to associate image with note: {}", e))?;
+    }
+    
+    Ok(image_metadata)
+}
+
+#[tauri::command]
+async fn get_image(
+    id: String,
+    app_handle: AppHandle,
+    state: State<'_, AppState>,
+) -> Result<ImageWithData, String> {
+    use std::fs;
+    
+    let pool = state.db.pool();
+    
+    let image_metadata = sqlx::query_as::<_, ImageMetadata>(
+        "SELECT * FROM images WHERE id = ?1"
+    )
+    .bind(&id)
+    .fetch_one(pool)
+    .await
+    .map_err(|e| format!("Failed to get image metadata: {}", e))?;
+    
+    // Read file data
+    let file_data = fs::read(&image_metadata.file_path)
+        .map_err(|e| format!("Failed to read image file: {}", e))?;
+    
+    // Convert to base64 for frontend
+    let base64_data = base64::encode(&file_data);
+    let data_url = format!("data:{};base64,{}", image_metadata.mime_type, base64_data);
+    
+    Ok(ImageWithData {
+        id: image_metadata.id,
+        filename: image_metadata.filename,
+        original_name: image_metadata.original_name,
+        file_path: image_metadata.file_path,
+        size: image_metadata.size,
+        mime_type: image_metadata.mime_type,
+        created_at: image_metadata.created_at,
+        data_url,
+    })
+}
+
+#[tauri::command]
+async fn get_all_images(state: State<'_, AppState>) -> Result<Vec<ImageMetadata>, String> {
+    let pool = state.db.pool();
+    
+    let images = sqlx::query_as::<_, ImageMetadata>(
+        "SELECT * FROM images ORDER BY created_at DESC"
+    )
+    .fetch_all(pool)
+    .await
+    .map_err(|e| format!("Failed to get images: {}", e))?;
+    
+    Ok(images)
+}
+
+#[tauri::command]
+async fn get_images_for_note(
+    note_id: String,
+    state: State<'_, AppState>,
+) -> Result<Vec<ImageMetadata>, String> {
+    let pool = state.db.pool();
+    
+    let images = sqlx::query_as::<_, ImageMetadata>(
+        r#"
+        SELECT i.* FROM images i
+        JOIN note_images ni ON i.id = ni.image_id
+        WHERE ni.note_id = ?1
+        ORDER BY i.created_at DESC
+        "#
+    )
+    .bind(&note_id)
+    .fetch_all(pool)
+    .await
+    .map_err(|e| format!("Failed to get images for note: {}", e))?;
+    
+    Ok(images)
+}
+
+#[tauri::command]
+async fn delete_image(
+    id: String,
+    app_handle: AppHandle,
+    state: State<'_, AppState>,
+) -> Result<(), String> {
+    use std::fs;
+    
+    let pool = state.db.pool();
+    
+    // Get image metadata first
+    let image_metadata = sqlx::query_as::<_, ImageMetadata>(
+        "SELECT * FROM images WHERE id = ?1"
+    )
+    .bind(&id)
+    .fetch_one(pool)
+    .await
+    .map_err(|e| format!("Failed to get image metadata: {}", e))?;
+    
+    // Delete file from disk
+    if let Err(e) = fs::remove_file(&image_metadata.file_path) {
+        eprintln!("Warning: Failed to delete image file {}: {}", image_metadata.file_path, e);
+    }
+    
+    // Delete from database (this will cascade to note_images due to foreign key)
+    let result = sqlx::query("DELETE FROM images WHERE id = ?1")
+        .bind(&id)
+        .execute(pool)
+        .await
+        .map_err(|e| format!("Failed to delete image from database: {}", e))?;
+    
+    if result.rows_affected() == 0 {
+        return Err(format!("Image with id {} not found", id));
+    }
+    
+    Ok(())
+}
+
+#[tauri::command]
+async fn update_image_note_association(
+    image_id: String,
+    note_id: String,
+    is_used: bool,
+    state: State<'_, AppState>,
+) -> Result<(), String> {
+    let pool = state.db.pool();
+    let now = Utc::now();
+    
+    if is_used {
+        // Add association if it doesn't exist
+        sqlx::query(
+            r#"
+            INSERT INTO note_images (note_id, image_id, created_at)
+            VALUES (?1, ?2, ?3)
+            ON CONFLICT (note_id, image_id) DO NOTHING
+            "#
+        )
+        .bind(&note_id)
+        .bind(&image_id)
+        .bind(&now)
+        .execute(pool)
+        .await
+        .map_err(|e| format!("Failed to add image association: {}", e))?;
+    } else {
+        // Remove association
+        sqlx::query("DELETE FROM note_images WHERE note_id = ?1 AND image_id = ?2")
+            .bind(&note_id)
+            .bind(&image_id)
+            .execute(pool)
+            .await
+            .map_err(|e| format!("Failed to remove image association: {}", e))?;
+    }
+    
+    Ok(())
+}
+
 // Data models
+#[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
+pub struct ImageMetadata {
+    pub id: String,
+    pub filename: String,
+    pub original_name: String,
+    pub file_path: String,
+    pub size: i64,
+    pub mime_type: String,
+    pub created_at: DateTime<Utc>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ImageWithData {
+    pub id: String,
+    pub filename: String,
+    pub original_name: String,
+    pub file_path: String,
+    pub size: i64,
+    pub mime_type: String,
+    pub created_at: DateTime<Utc>,
+    pub data_url: String,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, sqlx::FromRow)]
 pub struct Note {
     pub id: String,
@@ -726,7 +972,13 @@ pub fn run() {
             get_recent_searches,
             save_recent_search,
             export_notes,
-            import_notes
+            import_notes,
+            save_image,
+            get_image,
+            get_all_images,
+            get_images_for_note,
+            delete_image,
+            update_image_note_association
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -160,6 +160,149 @@ textarea:focus {
   scrollbar-color: var(--color-text-muted) var(--bg-primary);
 }
 
+/* Custom scrollbar for editor areas */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 160, 160, 0.2) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+  margin: 4px 1px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 2px;
+  opacity: 0.2;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+  opacity: 0.5;
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Editor specific scrollbar - ultra thin with no gap */
+.editor-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 160, 160, 0.15) transparent;
+}
+
+.editor-scrollbar::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+.editor-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 2px;
+  margin: 8px 0px;
+}
+
+.editor-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 2px;
+  opacity: 0.15;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+  min-height: 30px;
+}
+
+.editor-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+  opacity: 0.4;
+}
+
+.editor-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Note title editing styles */
+.note-title-input {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.note-title-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary)/20;
+}
+
+/* Tab scrollbar - ultra thin horizontal scrollbar */
+.tab-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 160, 160, 0.2) transparent;
+}
+
+.tab-scrollbar::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+.tab-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 1px;
+}
+
+.tab-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 1px;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.tab-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+  opacity: 0.6;
+}
+
+.tab-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Performance optimizations */
+.markdown-preview {
+  contain: layout style paint;
+  will-change: scroll-position;
+}
+
+.editor-textarea {
+  contain: layout style paint;
+  will-change: scroll-position;
+}
+
+/* Ensure checkbox accent color works */
+input[type="checkbox"] {
+  accent-color: var(--color-accent);
+}
+
+/* Task list styling */
+.task-list-item {
+  display: flex !important;
+  align-items: center !important;
+  list-style: none !important;
+}
+
+/* Image handling */
+.markdown-preview img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   * {

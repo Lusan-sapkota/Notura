@@ -1,4 +1,4 @@
 export { AppLayout } from './AppLayout';
-export { Sidebar } from './Sidebar';
+export { EnhancedSidebar } from './EnhancedSidebar';
 export { MainEditor } from './MainEditor';
 export { MetadataPanel } from './MetadataPanel';

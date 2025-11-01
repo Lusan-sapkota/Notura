@@ -158,6 +158,41 @@ impl Database {
         .await
         .map_err(|e| DatabaseError::Migration(e.to_string()))?;
         
+        // Create images table
+        sqlx::query(
+            r#"
+            CREATE TABLE IF NOT EXISTS images (
+                id TEXT PRIMARY KEY,
+                filename TEXT NOT NULL,
+                original_name TEXT NOT NULL,
+                file_path TEXT NOT NULL,
+                size INTEGER NOT NULL,
+                mime_type TEXT NOT NULL,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+            "#,
+        )
+        .execute(&self.pool)
+        .await
+        .map_err(|e| DatabaseError::Migration(e.to_string()))?;
+        
+        // Create note_images junction table for many-to-many relationship
+        sqlx::query(
+            r#"
+            CREATE TABLE IF NOT EXISTS note_images (
+                note_id TEXT NOT NULL,
+                image_id TEXT NOT NULL,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (note_id, image_id),
+                FOREIGN KEY (note_id) REFERENCES notes(id) ON DELETE CASCADE,
+                FOREIGN KEY (image_id) REFERENCES images(id) ON DELETE CASCADE
+            )
+            "#,
+        )
+        .execute(&self.pool)
+        .await
+        .map_err(|e| DatabaseError::Migration(e.to_string()))?;
+        
         Ok(())
     }
 }
