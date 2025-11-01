@@ -20,67 +20,77 @@
 
 Look, I've tried every note-taking app out there. They're either too simple (looking at you, Notepad) or so complex you need a PhD to figure out where the "New Note" button is. Notura hits that sweet spot where everything just works.
 
-**Live Preview Magic**: Type markdown on the left, see beautiful formatted text on the right. It's like having a crystal ball, but for your notes.
+**Live Preview Magic**: Type markdown on the left, see beautiful formatted text on the right. It's like having a crystal ball, but for your notes. The preview auto-scrolls to follow your cursor because it's 2024 and technology should work for you.
 
-**Auto-Scroll Sync**: The preview follows your cursor like a loyal puppy. No more scrolling around trying to find where you were.
+**Tab System That Actually Works**: Multiple notes open at once with keyboard shortcuts (Ctrl+Tab, Ctrl+1-9). Switch between notes faster than you switch between browser tabs (which is saying something).
 
-**Auto-Save**: Because nobody has time for Ctrl+S every 30 seconds. Your work saves itself while you focus on actually writing.
+**Auto-Save With Brains**: 2-second debounced saves with visual indicators. Your work is safer than your passwords (hopefully you're using a password manager).
 
-**Seamless Editing**: No borders, no distractions, no "look at me I'm a text editor" nonsense. Just you and your thoughts.
+**Zen Mode**: Hide everything except your words. Perfect for when you need to channel your inner minimalist writer or just can't handle any more UI elements.
 
-**Code Highlighting**: Syntax highlighting for 100+ programming languages because sometimes your notes need to look as good as your code.
+**Text Selection Superpowers**: Select text and watch a formatting toolbar appear like magic. Bold, italic, code, lang, strikethrough - all without memorizing markdown syntax.
+
+**Version History**: Track every change with restore capabilities. It's like Git for your thoughts, but without the existential crisis of merge conflicts.
+
+**Code Highlighting**: Syntax highlighting for 100+ programming languages because your code snippets deserve to look professional even in your grocery list notes.
 
 ### Organization That Makes Sense
 
-**Folders and Subfolders**: Create as many nested folders as your heart desires. Go wild. Make a folder inside a folder inside a folder. I won't judge.
+**Folders and Subfolders**: Create as many nested folders as your organizational heart desires. Go wild. Make a folder inside a folder inside a folder inside a folder. The app won't judge your folder inception habits.
 
-**Collections**: Think of them as smart playlists for your notes. Group related stuff together without the rigid folder structure.
+**Drag & Drop Everything**: Move notes between folders with intuitive drag-and-drop. It's like rearranging furniture but without the back pain and relationship arguments.
 
-**Drag & Drop**: Move notes around like you're rearranging furniture. It's oddly satisfying.
+**Enhanced Sidebar**: Collapsible sections, note counts, visual indicators for folder depth. It's organized chaos, but the good kind.
 
-**Smart Sorting**: Everything stays organized automatically because I know you're not going to do it manually.
+**Quick Access**: "All Notes" view for when you can't remember where you put that brilliant idea from last Tuesday (we've all been there).
 
-**Quick Access**: "All Notes" view for when you can't remember where you put that brilliant idea from last Tuesday.
+**Search That Actually Finds Things**: Powered by SQLite FTS5, which is a fancy way of saying "finds your stuff really, really fast" with result highlighting that makes your search terms light up like a Christmas tree.
 
 ### Search That Actually Works
 
-**Full-Text Search**: Powered by SQLite FTS5, which is a fancy way of saying "finds your stuff really, really fast."
+**Dual Search Mode**: Toggle between searching notes (content and titles) or folders with a single button. Because sometimes you know it's in a folder, you just can't remember which one.
 
-**Search Highlighting**: Your search terms light up like a Christmas tree in the results.
+**Real-time Filtering**: Type and watch results filter instantly. No loading spinners, no "please wait" messages, just immediate results.
 
-**Filter by Collections**: Search within specific collections because sometimes you know roughly where you put that thing.
+**Tag-based Filtering**: Filter notes by tags with a dropdown selector. Perfect for when you remember you tagged something #important but can't remember what.
 
-**Recent Searches**: Quick access to your recent searches because let's be honest, you're probably looking for the same stuff again.
+**Smart Search Bar**: Clean, intuitive search interface that remembers what mode you prefer and shows active filters as removable chips.
 
 ### The Details That Matter
 
-**Real-time Stats**: Word count, character count, reading time. For when you need to know if your "quick note" turned into a novel.
+**Real-time Stats**: Word count, character count, reading time, line count, paragraph count. For when you need to know if your "quick note" turned into the next Great American Novel.
 
-**Timestamps**: When you created it, when you last touched it. Digital archaeology at its finest.
+**Timestamps That Make Sense**: "2 hours ago", "Oct 28, 2025" - readable dates that don't require a computer science degree to understand.
 
-**Tag System**: Label your notes with whatever makes sense to you. #productivity #random-thoughts #grocery-lists
+**Tag System That Works**: Add and remove tags with a clean interface. Color-coded tags that you can actually manage without wanting to throw your computer out the window. #productivity #random-thoughts #grocery-lists #existential-crisis
 
-**Related Notes**: The app suggests other notes you might want to read. It's like having a personal librarian who actually knows where everything is.
+**Comprehensive Metadata Panel**: Everything you need to know about your note in one place - creation date, modification time, word count, character count, reading time, folder location, tags, images, and version history. It's like having a personal assistant for your notes.
 
-**Version History**: Track changes over time because sometimes you want to see how your brilliant idea evolved (or devolved).
+**Version History With Time Travel**: Track every change with restore capabilities. See how your brilliant idea evolved (or watch it slowly devolve into madness).
+
+**Image Management That Doesn't Suck**: Upload images, browse your gallery, auto-convert base64 images to managed assets. Your visual content is organized better than your actual photos.
 
 ### Themes That Don't Hurt Your Eyes
 
-**Cyber Amber**: Dark theme with amber highlights. Perfect for late-night writing sessions when you should probably be sleeping.
+**Cyber Amber**: Dark theme with amber highlights and neon accents. Perfect for late-night writing sessions when you should probably be sleeping but your brain won't shut up.
 
-**Zen Paper**: Clean, light theme for when you want to pretend you're writing on actual paper but with better search functionality.
+**Zen Paper**: Clean, light theme for when you want to pretend you're writing on actual paper but with better search functionality and zero paper cuts.
 
-**Smooth Transitions**: Theme switching so smooth you'll want to do it just for fun.
+**Smooth Transitions**: Theme switching so smooth you'll toggle it just to watch the animation. 150-250ms of pure visual satisfaction.
+
+**Responsive Everything**: Looks gorgeous on your phone, tablet, laptop, that ultrawide monitor you bought during the pandemic, or whatever screen you're using.
 
 ### Data You Can Trust
 
-**Local Storage**: Everything lives on your computer. No cloud, no subscriptions, no "oops we lost your data" emails.
+**Local Storage**: Everything lives on your computer in a SQLite database. No cloud, no subscriptions, no "oops we accidentally deleted your life's work" emails.
 
-**Export Everything**: Markdown, JSON, whatever format makes you happy. Your notes, your rules.
+**Export Everything**: Markdown files with proper formatting. Your notes, your rules, your file system.
 
-**Import Support**: Bring your existing notes from wherever they're currently trapped.
+**Import Support**: Bring your existing Markdown notes from wherever they're currently trapped (looking at you, other note apps).
 
-**Storage Insights**: See how much space your brilliant thoughts are taking up.
+**Storage Insights**: Real-time database size tracking so you know exactly how much space your brilliant thoughts are consuming.
+
+**Image Asset Management**: Automatic image optimization, gallery browsing, and cleanup. Your images are organized better than your actual photo library.
 
 ## Tech Stack (For the Curious)
 
@@ -101,35 +111,77 @@ Look, I've tried every note-taking app out there. They're either too simple (loo
 
 ### Development Tools
 
-- **Vite** - Build tool that's actually fast
-- **Vitest** - Testing that doesn't make you hate testing
-- **ESLint & Prettier** - Code quality enforcers
+- **Vite** - Build tool that's actually fast (sub-second hot reloads)
+- **Vitest** - Testing framework that doesn't make you want to quit programming
+- **React Testing Library** - Component testing that focuses on user behavior
+- **ESLint & Prettier** - Code quality enforcers (the good kind of strict parents)
 
 ## Development Status
 
-### What's Done (The Good Stuff)
+### What's Done (The Actually Impressive Stuff)
 
-- Core markdown editor with live preview
-- Auto-scrolling preview that follows your cursor
-- Auto-save functionality (because I care about your work)
-- Hierarchical folders and collections system
-- Full-text search with SQLite FTS5
-- Complete CRUD operations for notes and collections
-- Export/Import functionality
-- Responsive design that works on any screen size
-- Theme switching between Cyber Amber and Zen Paper
-- Metadata panel with all the stats you didn't know you needed
-- Local storage with SQLite (your data stays yours)
-- Comprehensive test suite (yes, I actually write tests)
+**Editor That Doesn't Suck:**
+- Advanced markdown editor with live preview and auto-scroll sync
+- Comprehensive tab system with keyboard shortcuts (Ctrl+Tab, Ctrl+1-9, because who has time to click?)
+- Auto-save with 2-second debounce (your work is safer than your browser history)
+- Zen mode for when you need to pretend the outside world doesn't exist
+- Text selection toolbar that appears like magic when you select text
+- Version history with restore capabilities (time travel for your thoughts)
+- Line numbers because sometimes you need to know you're on line 247 of your grocery list
 
-### What's Coming (The Even Better Stuff)
+**Organization That Actually Makes Sense:**
+- Hierarchical folder system with drag-and-drop (move stuff around like you're Marie Kondo)
+- Enhanced sidebar that collapses when you need more screen real estate
+- Full-text search powered by SQLite FTS5 (finds your stuff faster than you can remember where you put it)
+- Tag management system with add/remove functionality (because #productivity #life #chaos)
+- Search toggle between notes and folders with real-time filtering
+- Smart folder navigation with visual depth indicators
 
-- Advanced tag management system
-- More search filters
-- Note linking and backlinks
-- Performance optimizations (making fast things faster)
-- More export formats
-- Plugin system (maybe, if I'm feeling ambitious)
+**UI/UX That Doesn't Make You Cry:**
+- Two gorgeous themes: Cyber Amber (dark mode for night owls) and Zen Paper (light mode for morning people)
+- Fully responsive design (works on your phone, tablet, that ancient laptop you refuse to replace)
+- Comprehensive keyboard navigation (mouse is optional, carpal tunnel is not)
+- Resizable panels with persistent layouts (set it once, forget about it forever)
+- Real-time stats (word count, character count, reading time, lines - all the numbers you didn't know you needed)
+
+**Media Management That Actually Works:**
+- Advanced image management system with gallery
+- Auto-conversion of base64 images to managed assets (because nobody wants bloated files)
+- Image insertion via upload, URL, or drag-and-drop
+- Image gallery modal for browsing your visual masterpieces
+- Markdown table support with visual formatting
+- Task lists with interactive checkboxes (finally, a todo list that works)
+- Code syntax highlighting for 100+ languages (your code snippets look professional now)
+
+**Data You Can Actually Trust:**
+- Local SQLite database with FTS5 search (no cloud, no subscriptions, no "oops we lost everything" emails)
+- Export/import functionality for Markdown files
+- Storage information and database size tracking
+- Comprehensive CRUD operations for notes and folders
+- Image asset management with automatic cleanup
+- Data persistence that actually persists
+
+**Developer Experience That Doesn't Hate You:**
+- Comprehensive test suite (Vitest + React Testing Library + Rust tests)
+- TypeScript throughout for type safety (because runtime errors are for other people)
+- Modern build tooling (Vite, Tauri 2.0)
+- Clean architecture with 25+ reusable UI components
+- Custom hooks for everything (useNotes, useTabs, useImageManager, useVersionHistory)
+
+### What's Coming (The Cherry On Top)
+
+**Search Enhancements:**
+- Advanced filtering UI with date ranges and tag filters
+- Search history and suggestions (because you're probably looking for the same thing again)
+- Filter persistence and combination logic
+- Related notes suggestions based on content similarity
+
+**Final Polish:**
+- Enhanced accessibility features (WCAG 2.1 AA compliance)
+- Performance optimizations for large datasets
+- Onboarding flow for new users
+- Error boundaries and loading states
+- Cross-platform testing and optimization
 
 ## Getting Started
 
@@ -192,54 +244,78 @@ npm run format       # Format code with Prettier
 ```
 Notura/
 ├── src/                          # Frontend source code
-│   ├── components/              # React components
+│   ├── components/              # React components (25+ and counting)
 │   │   ├── layout/             # Layout components
-│   │   │   ├── AppLayout.tsx   # Main app layout
-│   │   │   ├── Sidebar.tsx     # Navigation sidebar
-│   │   │   ├── MainEditor.tsx  # The star of the show
-│   │   │   └── MetadataPanel.tsx # All the nerdy details
+│   │   │   ├── AppLayout.tsx   # Main app orchestrator
+│   │   │   ├── EnhancedSidebar.tsx # Navigation with all the bells and whistles
+│   │   │   ├── MainEditor.tsx  # The star of the show (1200+ lines of editor magic)
+│   │   │   └── MetadataPanel.tsx # All the nerdy stats you didn't know you needed
 │   │   └── ui/                 # Reusable UI components
-│   ├── contexts/               # React contexts
+│   │       ├── TabSystem.tsx   # Multi-tab editing system
+│   │       ├── EditorToolbar.tsx # Formatting tools galore
+│   │       ├── ImageGalleryModal.tsx # Visual asset management
+│   │       ├── TextSelectionToolbar.tsx # Magic formatting popup
+│   │       ├── VersionHistoryDropdown.tsx # Time travel for your notes
+│   │       └── 20+ other components # Because good UX needs good components
+│   ├── contexts/               # React contexts (ThemeProvider and friends)
 │   ├── hooks/                  # Custom React hooks
-│   ├── types/                  # TypeScript definitions
-│   └── App.tsx                 # Where it all begins
-├── src-tauri/                   # Tauri backend
+│   │   ├── useNotes.ts        # Note management logic
+│   │   ├── useTabs.ts         # Tab system state
+│   │   ├── useImageManager.ts # Image asset handling
+│   │   ├── useVersionHistory.ts # Change tracking
+│   │   └── useLocalStorage.ts # Persistent preferences
+│   ├── types/                  # TypeScript definitions (because types matter)
+│   └── App.tsx                 # Where the magic begins
+├── src-tauri/                   # Tauri backend (Rust powerhouse)
 │   ├── src/
-│   │   ├── database.rs         # Database magic
-│   │   ├── lib.rs              # Main Tauri commands
-│   │   └── test_utils.rs       # Testing utilities
-│   ├── Cargo.toml              # Rust dependencies
+│   │   ├── database.rs         # SQLite + FTS5 search magic
+│   │   ├── lib.rs              # Tauri commands (the API layer)
+│   │   └── test_utils.rs       # Testing utilities (yes, the backend has tests too)
+│   ├── Cargo.toml              # Rust dependencies (SQLx, Tokio, the good stuff)
 │   └── tauri.conf.json         # Tauri configuration
-└── docs/                        # Documentation (when I get around to it)
+└── tasks.md                     # Implementation roadmap (mostly checked off)
 ```
 
 ## Testing
 
-Yes, there are actually tests. Both frontend and backend are covered because I believe in doing things right.
+Yes, there are actually tests. Comprehensive ones. Both frontend and backend are covered because shipping broken software is for other people.
 
 ### Frontend Tests
 
-- Component tests with React Testing Library
-- Hook tests for custom functionality
-- Integration tests for user workflows
+- Component tests with React Testing Library (testing user behavior, not implementation details)
+- Custom hook tests for all the state management logic
+- Integration tests for complete user workflows
+- Theme switching and responsive behavior tests
 
 ### Backend Tests
 
-- Unit tests for individual functions
-- Integration tests for database operations
+- Unit tests for individual Tauri commands
+- Integration tests for database operations (SQLite + FTS5)
 - Performance tests for search functionality
+- Error handling and edge case validation
+
+### Test Coverage
+
+- Tab system functionality and keyboard shortcuts
+- Auto-save and version history mechanisms
+- Image management and asset optimization
+- Search and filtering operations
+- Theme persistence and UI state management
 
 Run them all:
 
 ```bash
-# Frontend tests
+# Frontend tests (Vitest + React Testing Library)
 npm run test
 
-# Backend tests
+# Backend tests (Rust + tokio-test)
 cd src-tauri && cargo test
 
-# Everything at once
-npm run test:all
+# Watch mode for development
+npm run test:watch
+
+# Test UI for interactive debugging
+npm run test:ui
 ```
 
 ## Contributing
